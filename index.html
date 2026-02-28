@@ -10,7 +10,7 @@
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
   </noscript>
 
   <style>
@@ -45,7 +45,7 @@
     html { 
       scroll-behavior: smooth; 
       background: var(--bg-deep);
-      overflow-y: scroll; /* фикс смещения из-за скроллбара */
+      overflow-y: scroll; /* ФИКС: скроллбар всегда виден */
     }
     
     body {
@@ -108,10 +108,11 @@
       overflow: hidden;
     }
 
+    /* ИСПРАВЛЕНО: простое центрирование без трансформаций */
     .hero-content {
       max-width: 950px;
       width: 100%;
-      margin: 0 auto; /* простое центрирование */
+      margin: 0 auto;
       text-align: center;
       padding: 0 var(--spacing-sm);
       z-index: 2;
@@ -290,6 +291,8 @@
       justify-content: space-between;
       overflow: hidden;
       position: relative;
+      opacity: 0;
+      transform: translateY(20px);
     }
     .division-card.visible {
       opacity: 1;
@@ -373,6 +376,9 @@
       flex-direction: column; 
       gap: 1.2rem;
       backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--easing-power), transform 0.6s var(--easing-power), border-color 0.3s;
     }
     .info-group.visible {
       opacity: 1;
@@ -456,6 +462,8 @@
       transition: all 0.4s var(--easing-power);
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
     }
     .tagger-button.visible {
       opacity: 1;
@@ -568,18 +576,6 @@
     /* Параллакс для hero */
     .hero {
       transition: background-position 0.1s ease;
-    }
-
-    /* Базовые стили для анимируемых элементов */
-    .division-card, .info-group, .tagger-button {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s var(--easing-power), transform 0.6s var(--easing-power), border-color 0.3s, background 0.3s, box-shadow 0.3s;
-    }
-
-    .division-card.visible, .info-group.visible, .tagger-button.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     /* Фокус состояния */
@@ -759,8 +755,7 @@
           }
         });
       }, { 
-        threshold: 0.15,
-        rootMargin: '0px 0px -20px 0px'
+        threshold: 0.15
       });
 
       animatedElements.forEach(el => {
