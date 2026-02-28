@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RODEO UNION GROUP — корпоративный холдинг</title>
-  <meta name="description" content="RODEO UNION GROUP — многопрофильный холдинг в Сан-Андреасе. Управление сетью заведений, научные разработки, благотворительность." />
 
   <!-- Критические ресурсы -->
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -14,7 +13,7 @@
   </noscript>
 
   <style>
-    /* ===== БАЗА И ПЕРЕМЕННЫЕ ===== */
+    /* ===== БАЗА ===== */
     :root {
       --bg-deep: #0A0A0A;
       --bg-panel: #151515;
@@ -25,65 +24,31 @@
       --gold-dim: #9B8A5A;
       --text-white: #FFFFFF;
       --text-muted: #9E9E9E;
-      --text-light: #E0E0E0;
-      --easing-power: cubic-bezier(0.4, 0.0, 0.2, 1);
+      --easing-power: cubic-bezier(.4,0,.2,1);
       --radius: 14px;
       --shadow: 0 8px 28px rgba(0,0,0,.25);
-      --spacing-xs: 0.5rem;
-      --spacing-sm: 1rem;
-      --spacing-md: 2rem;
-      --spacing-lg: 4rem;
-      --spacing-xl: 6rem;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { 
-      scroll-behavior: smooth; 
-      background: var(--bg-deep);
-    }
-    
+    html { scroll-behavior: smooth; background: #0A0A0A; }
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--text-white);
-      background: var(--bg-deep);
+      background: #0A0A0A;
       min-height: 100vh;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      width: 100%;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* ===== КОМПОНЕНТЫ ===== */
-    .container { 
-      width: 100%; 
-      max-width: 1200px; 
-      margin: 0 auto; 
-      padding: 0 var(--spacing-sm); 
     }
 
     /* ===== ХЕДЕР ===== */
     .header {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      z-index: 100;
-      padding: 1.75rem var(--spacing-md);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 1.75rem 2rem;
       backdrop-filter: blur(12px) saturate(120%);
       background: rgba(5,5,5,.75);
       border-bottom: 1px solid rgba(201,169,89,.15);
-      transition: padding 0.3s;
     }
-    @media (max-width: 768px) {
-      .header { padding: var(--spacing-sm); }
-    }
-
     .logo {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 300;
@@ -92,8 +57,6 @@
       color: var(--text-white);
       text-align: center;
       white-space: nowrap;
-      font-size: clamp(1rem, 3vw, 1.4rem);
-      width: 100%;
     }
     .logo span { color: var(--gold); }
 
@@ -102,7 +65,7 @@
       min-height: 100vh;
       display: grid;
       align-items: end;
-      padding: var(--spacing-xl) 0 var(--spacing-lg);
+      padding: 6rem 0 6rem;
       position: relative;
       background: radial-gradient(ellipse at 70% 40%, #1E1A12 0%, #070707 90%);
       overflow: hidden;
@@ -113,7 +76,7 @@
       width: 100%;
       margin: 0 auto;
       text-align: center;
-      padding: 0 var(--spacing-sm);
+      padding: 0 1rem;
       z-index: 2;
     }
 
@@ -135,22 +98,18 @@
       line-height: 0.92;
       text-transform: uppercase;
       color: var(--text-white);
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: 1rem;
       white-space: nowrap;
-      animation: fadeInUp 1s var(--easing-power);
-      text-align: center;
-      width: 100%;
     }
 
     .hero-desc {
-      color: var(--text-light);
+      color: #DADADA;
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       max-width: 720px;
       margin: 0 auto 1.8rem;
       text-align: center;
       font-weight: 300;
       line-height: 1.75;
-      animation: fadeInUp 1s var(--easing-power) 0.1s both;
     }
 
     .gold-button {
@@ -161,7 +120,7 @@
       background: transparent;
       border: 1px solid var(--gold);
       color: var(--gold);
-      padding: var(--spacing-sm) 2.4rem;
+      padding: 1rem 2.4rem;
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.3em;
@@ -169,247 +128,127 @@
       transition: all 0.5s var(--easing-power);
       cursor: pointer;
       border-radius: 999px;
-      text-decoration: none;
-      animation: fadeInUp 1s var(--easing-power) 0.2s both;
     }
     .gold-button:hover {
       background: var(--gold);
-      color: var(--bg-deep);
+      color: #0A0A0A;
       box-shadow: 0 0 28px rgba(201,169,89,.5);
-      transform: translateY(-2px);
-    }
-    .gold-button:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
     }
 
     /* ===== О ХОЛДИНГЕ ===== */
-    .section-about { 
-      padding: var(--spacing-xl) 0; 
-      background: var(--bg-deep); 
-    }
+    .section-about { padding: 6rem 0; background: #0A0A0A; }
 
     .about-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: var(--spacing-lg);
+      gap: 4rem;
       align-items: center;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 var(--spacing-sm);
-    }
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; gap: var(--spacing-md); }
+      padding: 0 1.5rem;
     }
 
     .about-left p {
       font-size: 1.25rem;
-      color: var(--text-light);
+      color: #DDD;
       font-weight: 300;
       line-height: 1.8;
       margin-bottom: 1.8rem;
     }
     .accent-gold { color: var(--gold); font-weight: 500; }
 
-    .stats { display: flex; gap: 2.5rem; margin-top: var(--spacing-sm); }
+    .stats { display: flex; gap: 2.5rem; margin-top: 1rem; }
 
-    .stat-item { 
-      border-top: 1px solid var(--gold-dim); 
-      padding-top: .8rem; 
-      min-width: 120px; 
-    }
-    .stat-number { 
-      font-size: 2.4rem; 
-      font-weight: 200; 
-      color: var(--gold); 
-      line-height: 1; 
-    }
-    .stat-label { 
-      font-size: .7rem; 
-      letter-spacing: .2em; 
-      text-transform: uppercase; 
-      color: var(--text-muted); 
-    }
+    .stat-item { border-top: 1px solid var(--gold-dim); padding-top: .8rem; min-width: 120px; }
+    .stat-number { font-size: 2.4rem; font-weight: 200; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); }
 
-    .about-right .about-quote { 
-      font-size: 1.75rem; 
-      color: #CCC; 
-      font-weight: 200; 
-      line-height: 1.5; 
-    }
-    .quote-author { 
-      margin-top: .8rem; 
-      color: var(--gold-dim); 
-      text-transform: uppercase; 
-      letter-spacing: .15em; 
-      font-size: .8rem; 
-    }
+    .about-right .about-quote { font-size: 1.75rem; color: #CCC; font-weight: 200; line-height: 1.5; }
+    .quote-author { margin-top: .8rem; color: var(--gold-dim); text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; }
 
     /* ===== НАПРАВЛЕНИЯ ===== */
-    .divisions { 
-      padding: var(--spacing-xl) 0; 
-      background: #0F0F0F; 
-    }
+    .divisions { padding: 5rem 0; background: #0F0F0F; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
     .directions-head {
-      display: flex; 
-      align-items: end; 
-      justify-content: space-between; 
-      gap: var(--spacing-sm);
+      display: flex; align-items: end; justify-content: space-between; gap: 1rem;
       margin-bottom: 1.75rem;
     }
     .directions-head h2 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2rem; 
-      font-weight: 300; 
-      color: var(--gold);
+      font-size: 2rem; font-weight: 300; color: var(--gold);
       white-space: nowrap;
-    }
-    @media (max-width: 768px) {
-      .directions-head { flex-direction: column; align-items: start; }
     }
 
     .division-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-sm);
-    }
-    @media (max-width: 768px) {
-      .division-grid { grid-template-columns: 1fr; }
+      gap: 1rem;
     }
 
     .division-card {
-      background: linear-gradient(var(--bg-card), #141414);
-      padding: var(--spacing-md);
+      background: linear-gradient(#1A1A1A, #141414);
+      padding: 2rem;
       border-radius: var(--radius);
       border: 1px solid var(--border-subtle);
-      transition: all 0.5s var(--easing-power);
+      transition: transform .5s var(--easing-power), background .3s;
       min-height: 180px;
-      display: flex; 
-      flex-direction: column; 
-      justify-content: space-between;
+      display: flex; flex-direction: column; justify-content: space-between;
       overflow: hidden;
       position: relative;
-      opacity: 0;
-      transform: translateY(30px);
     }
-    .division-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .division-card:hover { 
-      transform: translateY(-6px); 
-      background: linear-gradient(#232323, var(--bg-card)); 
-      border-color: var(--gold-dim);
-    }
+    .division-card:hover { transform: translateY(-6px); background: linear-gradient(#232323, #1A1A1A); }
 
-    .division-sub { 
-      font-size: .72rem; 
-      letter-spacing: .25em; 
-      text-transform: uppercase; 
-      color: var(--gold-dim); 
-      margin-bottom: .4rem; 
-    }
-    .division-card h3 { 
-      font-size: 1.6rem; 
-      font-weight: 300; 
-      color: var(--gold); 
-      margin-bottom: .6rem; 
-    }
-    .gold-divider { 
-      width: 40px; 
-      height: 1px; 
-      background: var(--gold); 
-      margin: 0.6rem 0 0.8rem; 
-      transition: width 0.3s;
-    }
-    .division-card:hover .gold-divider { width: 70px; }
-    .division-card p { 
-      color: var(--text-light); 
-      font-size: .95rem; 
-      line-height: 1.6; 
-    }
+    .division-sub { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: .4rem; }
+    .division-card h3 { font-size: 1.6rem; font-weight: 300; color: var(--gold); margin-bottom: .6rem; }
+    .gold-divider { width: 40px; height: 1px; background: var(--gold); margin: 0.6rem 0 0.8rem; }
+    .division-card p { color: #ccc; font-size: .95rem; line-height: 1.6; }
 
-    /* ===== КОНТАКТЫ (обновленные - только связь) ===== */
-    .contacts-section { 
-      padding: var(--spacing-xl) 0 var(--spacing-lg); 
-      background: linear-gradient(145deg, #0C0C0C 0%, #131313 100%); 
-    }
+    /* ===== КОНТАКТЫ ===== */
+    .contacts-section { padding: 5rem 0 4rem; background: linear-gradient(145deg, #0C0C0C 0%, #131313 100%); }
 
-    .contact-head {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: flex-end; 
-      margin-bottom: 1.8rem; 
-      flex-wrap: wrap; 
-      gap: var(--spacing-sm);
-    }
-    .contact-head h2 { 
-      font-size: 2.5rem; 
-      font-weight: 300; 
-      color: var(--text-white); 
-    }
-    .head-quote { 
-      color: var(--gold-dim); 
-      font-size: .9rem; 
-      letter-spacing: .2em; 
-      text-transform: uppercase; 
-    }
+    .contact-head { display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem; }
+    .head-quote { color: var(--gold-dim); font-size: .9rem; letter-spacing: .2em; text-transform: uppercase; }
 
     .contact-cards { 
       display: grid; 
-      grid-template-columns: 1fr; 
+      grid-template-columns: 1fr 1fr; 
       gap: 1.8rem; 
-      margin-bottom: var(--spacing-lg);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 2rem;
     }
 
     .info-group { 
       background: rgba(20,20,20,.7); 
       border: 1px solid var(--border-subtle); 
-      padding: 2.5rem;
+      padding: 1.8rem; 
       border-radius: 12px; 
       display: flex; 
       flex-direction: column; 
-      gap: 1.2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s var(--easing-power), border-color 0.3s;
-      backdrop-filter: blur(10px);
+      gap: .9rem; 
     }
-    .info-group.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .info-group:hover {
-      border-color: var(--gold-dim);
-    }
-
     .info-row { 
       display: flex; 
-      align-items: center;
-      padding: 0.5rem 0;
+      border-bottom: 1px dashed #2A2A2A; 
+      padding: .8rem 0; 
+      align-items: center; 
     }
-    .info-row:not(:last-child) {
-      border-bottom: 1px dashed var(--border-subtle);
-    }
-
+    .info-row:last-child { border-bottom: none; }
     .info-label { 
-      width: 100px; 
-      font-size: 0.75rem; 
+      width: 110px; 
+      font-size: .7rem; 
       text-transform: uppercase; 
       color: var(--gold); 
-      letter-spacing: 0.1em; 
-      opacity: 0.9; 
-      font-weight: 400;
+      letter-spacing: .1em; 
+      opacity: .9; 
+      display: inline-block; 
     }
     .info-value { 
       flex: 1; 
-      color: var(--text-light); 
+      color: #ddd; 
       font-weight: 300; 
-      font-size: 1.1rem;
+      display: inline-flex; 
+      align-items: center; 
+      gap: .4rem; 
     }
 
     .info-value a { 
@@ -423,9 +262,9 @@
       border-bottom-color: var(--gold); 
     }
 
-    /* ===== СТИЛИЗОВАННЫЕ КНОПКИ TAGGER ===== */
+    /* ===== СТИЛИЗОВАННЫЙ БЛОК TAGGER ===== */
     .tagger-section {
-      margin-top: var(--spacing-lg);
+      margin-top: 4rem;
     }
 
     .tagger-title {
@@ -435,15 +274,12 @@
       text-transform: uppercase;
       margin-bottom: 1.5rem;
       font-size: 0.9rem;
-      text-align: center;
     }
 
     .tagger-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
+      gap: 1rem;
     }
 
     @media (max-width: 768px) {
@@ -453,48 +289,20 @@
     .tagger-button {
       display: block;
       width: 100%;
-      padding: 1.8rem 1.5rem;
-      background: linear-gradient(145deg, #1A1A1A, #141414);
+      padding: 1.5rem;
+      background: #1A1A1A;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
       text-decoration: none;
-      transition: all 0.4s var(--easing-power);
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .tagger-button.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .tagger-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(201, 169, 89, 0.03), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
     }
 
     .tagger-button:hover {
       transform: translateY(-4px);
       border-color: var(--gold);
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,89,0.2);
-    }
-
-    .tagger-button:hover::before {
-      transform: translateX(100%);
-    }
-
-    .tagger-button:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
+      background: #232323;
     }
 
     .tagger-label {
@@ -504,25 +312,14 @@
       color: var(--gold-dim);
       margin-bottom: 0.5rem;
       display: block;
-      transition: color 0.3s;
-    }
-
-    .tagger-button:hover .tagger-label {
-      color: var(--gold-light);
     }
 
     .tagger-name {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 300;
       color: var(--text-white);
-      margin-bottom: 0.3rem;
-      transition: color 0.3s, transform 0.3s;
+      margin-bottom: 0.5rem;
       display: block;
-    }
-
-    .tagger-button:hover .tagger-name {
-      color: var(--gold);
-      transform: translateX(4px);
     }
 
     .tagger-hint {
@@ -531,11 +328,6 @@
       display: flex;
       align-items: center;
       gap: 0.3rem;
-      transition: color 0.3s;
-    }
-
-    .tagger-button:hover .tagger-hint {
-      color: var(--gold-dim);
     }
 
     .tagger-hint::after {
@@ -549,62 +341,28 @@
 
     /* ===== ФУТЕР ===== */
     .footer { 
-      background: var(--bg-deep); 
-      border-top: 1px solid #1E1E1E; 
-      padding: var(--spacing-md) var(--spacing-md); 
-      display: flex; 
+      background:#0A0A0A; 
+      border-top:1px solid #1E1E1E; 
+      padding: 2rem 2rem; 
+      display:flex; 
       justify-content: space-between; 
       align-items: center; 
-      font-size: .75rem; 
-      color: #5F5F5F; 
+      font-size:.75rem; 
+      color:#5F5F5F; 
       text-transform: uppercase; 
-      letter-spacing: .15em; 
+      letter-spacing:.15em; 
     }
 
     /* ===== АНИМАЦИИ ===== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Параллакс для hero */
-    .hero {
-      transition: background-position 0.1s ease;
-    }
-
-    /* Базовые стили для анимируемых элементов */
-    .division-card, .info-group, .tagger-button {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s var(--easing-power), transform 0.6s var(--easing-power), border-color 0.3s, background 0.3s, box-shadow 0.3s;
-    }
-
-    .division-card.visible, .info-group.visible, .tagger-button.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Фокус состояния */
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 4px;
-      border-radius: 4px;
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      html { scroll-behavior: auto; }
+      .division-card, .info-group, .tagger-button { transition: none; animation: none; }
     }
+
+    .hidden { opacity: 0; transform: translateY(20px); }
+    .visible { opacity: 1; transform: translateY(0); transition: all .6s var(--easing-power); }
+
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -616,7 +374,7 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero" id="hero" aria-label="Героическая секция">
+    <section class="hero" aria-label="Героическая секция">
       <div class="container hero-content">
         <h1>RODEO UNION GROUP</h1>
         <div class="slogan" aria-label="Слоган">Community. Balance. Choice.</div>
@@ -640,7 +398,7 @@
     <section class="section-about" id="about" aria-label="Об Холдинге">
       <div class="container about-grid">
         <div class="about-left">
-          <p><span class="accent-gold">RODEO UNION GROUP</span> — системный интегратор бизнеса, культуры и высоких технологий. Мы формируем среду, в которой развлечения становятся искусством, а наука — инструментом влияния.</p>
+          <p><span class="accent-gold">Родео Юнион Груп</span> — системный интегратор бизнеса, культуры и высоких технологий. Мы формируем среду, в которой развлечения становятся искусством, а наука — инструментом влияния.</p>
           <div class="stats" aria-label="Статистика">
             <div class="stat-item">
               <div class="stat-number">22</div>
@@ -663,83 +421,92 @@
     <section class="divisions" aria-label="Направления">
       <div class="container">
         <div class="directions-head">
-          <h2>НАПРАВЛЕНИЯ</h2>
+          <h2>Направления</h2>
           <span class="head-quote">готовые решения и новые возможности</span>
         </div>
 
         <div class="division-grid" role="region" aria-label="Карточки направлений">
-          <article class="division-card">
-            <div>
-              <div class="division-sub">благотворительное крыло</div>
-              <h3>RODEO OUTREACH</h3>
-              <div class="gold-divider"></div>
-            </div>
+          <article class="division-card hidden">
+            <div class="division-sub">благотворительное крыло</div>
+            <h3>RODEO OUTREACH</h3>
+            <div class="gold-divider"></div>
             <p>Фонд, реализующий социальные инициативы: медицина, образование и адресная помощь — улучшая качество жизни в сообществах.</p>
           </article>
 
-          <article class="division-card">
-            <div>
-              <div class="division-sub">технологический центр</div>
-              <h3>RODEO RESEARCH</h3>
-              <div class="gold-divider"></div>
-            </div>
+          <article class="division-card hidden">
+            <div class="division-sub">технологический центр</div>
+            <h3>RODEO RESEARCH</h3>
+            <div class="gold-divider"></div>
             <p>Научные разработки в фармацевтике и передовых технологиях. Лаборатории, патенты, инновации в действии.</p>
           </article>
 
-          <article class="division-card">
-            <div>
-              <div class="division-sub">коммерция & индустрия</div>
-              <h3>RODEO APPROACH</h3>
-              <div class="gold-divider"></div>
-            </div>
+          <article class="division-card hidden">
+            <div class="division-sub">коммерция & индустрия</div>
+            <h3>RODEO APPROACH</h3>
+            <div class="gold-divider"></div>
             <p>Сеть клубов, баров, спортивных залов, бильярдных и казино — драйв и роскошь без компромиссов.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- КОНТАКТЫ (только связь) -->
+    <!-- КОНТАКТЫ -->
     <section class="contacts-section" aria-label="Контакты">
       <div class="container">
         <div class="contact-head">
-          <h2>СВЯЖИТЕСЬ С НАМИ</h2>
+          <h2>Связь с холдингом</h2>
           <span class="head-quote">офисы по всему Сан-Андреасу</span>
         </div>
 
         <div class="contact-cards" aria-label="Контактная информация">
-          <div class="info-group">
+          <div class="info-group hidden">
             <div class="info-row">
-              <span class="info-label" aria-label="Штаб">штаб</span>
+              <span class="info-label">штаб</span>
               <span class="info-value">1600 Rodeo Drive, Los Santos</span>
             </div>
             <div class="info-row">
-              <span class="info-label" aria-label="Линии связи">линии</span>
+              <span class="info-label">линии</span>
               <span class="info-value">+1-901-111 • +1-133-013</span>
             </div>
             <div class="info-row">
-              <span class="info-label" aria-label="Электронная почта">почта</span>
+              <span class="info-label">почта</span>
               <span class="info-value"><a href="mailto:rodeouniongroup@gmail.com">rodeouniongroup@gmail.com</a></span>
+            </div>
+          </div>
+
+          <div class="info-group hidden">
+            <div class="info-row">
+              <span class="info-label">режим</span>
+              <span class="info-value">24/7 • экстренная связь</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">офис</span>
+              <span class="info-value">круглосуточно</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">secure</span>
+              <span class="info-value">по запросу</span>
             </div>
           </div>
         </div>
 
-        <!-- СТИЛИЗОВАННЫЙ БЛОК TAGGER -->
+        <!-- БЛОК TAGGER -->
         <div class="tagger-section">
           <div class="tagger-title">TAGGER • официальные ресурсы</div>
           <div class="tagger-grid">
-            <a href="https://tagger.su/unmeinohiniku" class="tagger-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://tagger.su/unmeinohiniku" class="tagger-button hidden" target="_blank" rel="noopener noreferrer">
               <span class="tagger-label">генеральный директор</span>
-              <span class="tagger-name">ЮКАРИ ОЕДЗАВА</span>
+              <span class="tagger-name">unmeinohiniku</span>
               <span class="tagger-hint">перейти в профиль</span>
             </a>
 
-            <a href="https://tagger.su/pages/rodeouniongroup" class="tagger-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://tagger.su/pages/rodeouniongroup" class="tagger-button hidden" target="_blank" rel="noopener noreferrer">
               <span class="tagger-label">сообщество холдинга</span>
-              <span class="tagger-name">RODEO UNION GROUP</span>
+              <span class="tagger-name">rodeouniongroup</span>
               <span class="tagger-hint">перейти в сообщество</span>
             </a>
 
-            <a href="https://tagger.su/pages/RFLAB_RECORDS" class="tagger-button" target="_blank" rel="noopener noreferrer">
+            <a href="https://tagger.su/pages/RFLAB_RECORDS" class="tagger-button hidden" target="_blank" rel="noopener noreferrer">
               <span class="tagger-label">лейбл</span>
               <span class="tagger-name">RFLAB RECORDS</span>
               <span class="tagger-hint">перейти на лейбл</span>
@@ -755,39 +522,24 @@
     <div class="copy"><strong>RODEO UNION GROUP</strong> © all rights reserved</div>
   </footer>
 
+  <!-- JS: плавная анимация появления секций -->
   <script>
     (function() {
-      // ===== INTERSECTION OBSERVER (анимация появления) =====
-      const animatedElements = document.querySelectorAll('.division-card, .info-group, .tagger-button');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+      // Плавное появление элементов на экране
+      const toReveal = document.querySelectorAll('.division-card, .info-group, .tagger-button');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            e.target.classList.remove('hidden');
           }
         });
-      }, { 
-        threshold: 0.15,
-        rootMargin: '0px 0px -20px 0px'
+      }, { threshold: 0.15 });
+
+      toReveal.forEach(el => {
+        el.classList.add('hidden');
+        io.observe(el);
       });
-
-      animatedElements.forEach(el => {
-        observer.observe(el);
-      });
-
-      // ===== ПАРАЛЛАКС ДЛЯ HERO =====
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        window.addEventListener('scroll', () => {
-          const scrolled = window.pageYOffset;
-          hero.style.backgroundPositionY = scrolled * 0.3 + 'px';
-        });
-      }
-
-      // ===== КОНСОЛЬ ПРИВЕТСТВИЕ =====
-      console.log('%cRODEO UNION GROUP // корпоративный портал', 'color: #C9A959; font-size: 13px; font-weight: 400;');
-      console.log('%c22 актива • 3 направления • полный спектр влияния', 'color: #6A6A6A;');
     })();
   </script>
 </body>
