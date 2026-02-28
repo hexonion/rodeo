@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RODEO UNION GROUP</title>
+  <title>RODEO UNION GROUP — корпоративный холдинг</title>
   <meta name="description" content="RODEO UNION GROUP — многопрофильный холдинг в Сан-Андреасе. Управление сетью заведений, научные разработки, благотворительность." />
 
   <!-- Критические ресурсы -->
@@ -330,7 +330,7 @@
       line-height: 1.6; 
     }
 
-    /* ===== КОНТАКТЫ (обновленные) ===== */
+    /* ===== КОНТАКТЫ (обновленные - только связь) ===== */
     .contacts-section { 
       padding: var(--spacing-xl) 0 var(--spacing-lg); 
       background: linear-gradient(145deg, #0C0C0C 0%, #131313 100%); 
@@ -358,25 +358,26 @@
 
     .contact-cards { 
       display: grid; 
-      grid-template-columns: 1fr 1fr; 
+      grid-template-columns: 1fr; 
       gap: 1.8rem; 
       margin-bottom: var(--spacing-lg);
-    }
-    @media (max-width: 768px) {
-      .contact-cards { grid-template-columns: 1fr; }
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .info-group { 
       background: rgba(20,20,20,.7); 
       border: 1px solid var(--border-subtle); 
-      padding: 1.8rem; 
+      padding: 2.5rem;
       border-radius: 12px; 
       display: flex; 
       flex-direction: column; 
-      gap: .9rem;
+      gap: 1.2rem;
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.6s var(--easing-power), border-color 0.3s;
+      backdrop-filter: blur(10px);
     }
     .info-group.visible {
       opacity: 1;
@@ -388,28 +389,27 @@
 
     .info-row { 
       display: flex; 
-      border-bottom: 1px dashed var(--border-subtle); 
-      padding: .8rem 0; 
-      align-items: center; 
+      align-items: center;
+      padding: 0.5rem 0;
     }
-    .info-row:last-child { border-bottom: none; }
+    .info-row:not(:last-child) {
+      border-bottom: 1px dashed var(--border-subtle);
+    }
 
     .info-label { 
-      width: 110px; 
-      font-size: .7rem; 
+      width: 100px; 
+      font-size: 0.75rem; 
       text-transform: uppercase; 
       color: var(--gold); 
-      letter-spacing: .1em; 
-      opacity: .9; 
-      display: inline-block; 
+      letter-spacing: 0.1em; 
+      opacity: 0.9; 
+      font-weight: 400;
     }
     .info-value { 
       flex: 1; 
       color: var(--text-light); 
       font-weight: 300; 
-      display: inline-flex; 
-      align-items: center; 
-      gap: .4rem; 
+      font-size: 1.1rem;
     }
 
     .info-value a { 
@@ -423,7 +423,7 @@
       border-bottom-color: var(--gold); 
     }
 
-    /* ===== СТИЛИЗОВАННЫЕ КНОПКИ TAGGER (без видимости ссылок) ===== */
+    /* ===== СТИЛИЗОВАННЫЕ КНОПКИ TAGGER ===== */
     .tagger-section {
       margin-top: var(--spacing-lg);
     }
@@ -435,12 +435,15 @@
       text-transform: uppercase;
       margin-bottom: 1.5rem;
       font-size: 0.9rem;
+      text-align: center;
     }
 
     .tagger-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     @media (max-width: 768px) {
@@ -718,30 +721,15 @@
               <span class="info-value"><a href="mailto:rodeouniongroup@gmail.com">rodeouniongroup@gmail.com</a></span>
             </div>
           </div>
-
-          <div class="info-group">
-            <div class="info-row">
-              <span class="info-label" aria-label="Режим работы">режим</span>
-              <span class="info-value">24/7 • экстренная связь</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label" aria-label="Штаб-квартира">центральный офис</span>
-              <span class="info-value">круглосуточно</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label" aria-label="Конфиденциально">secure line</span>
-              <span class="info-value">по запросу</span>
-            </div>
-          </div>
         </div>
 
-        <!-- СТИЛИЗОВАННЫЙ БЛОК TAGGER (без видимости ссылок) -->
+        <!-- СТИЛИЗОВАННЫЙ БЛОК TAGGER -->
         <div class="tagger-section">
           <div class="tagger-title">TAGGER • официальные ресурсы</div>
           <div class="tagger-grid">
             <a href="https://tagger.su/unmeinohiniku" class="tagger-button" target="_blank" rel="noopener noreferrer">
               <span class="tagger-label">генеральный директор</span>
-              <span class="tagger-name">YUKARI OEODZAVA</span>
+              <span class="tagger-name">ЮКАРИ ОЕДЗАВА</span>
               <span class="tagger-hint">перейти в профиль</span>
             </a>
 
