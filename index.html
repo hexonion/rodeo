@@ -45,6 +45,7 @@
     html { 
       scroll-behavior: smooth; 
       background: var(--bg-deep);
+      overflow-y: scroll; /* фикс смещения из-за скроллбара */
     }
     
     body {
@@ -56,7 +57,6 @@
       -webkit-font-smoothing: antialiased;
       width: 100%;
       overflow-x: hidden;
-      position: relative;
     }
 
     /* ===== КОМПОНЕНТЫ ===== */
@@ -111,7 +111,7 @@
     .hero-content {
       max-width: 950px;
       width: 100%;
-      margin: 0 auto;
+      margin: 0 auto; /* простое центрирование */
       text-align: center;
       padding: 0 var(--spacing-sm);
       z-index: 2;
