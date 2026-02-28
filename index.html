@@ -10,7 +10,7 @@
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
   </noscript>
 
   <style>
@@ -45,7 +45,7 @@
     html { 
       scroll-behavior: smooth; 
       background: var(--bg-deep);
-      overflow-y: scroll; /* ФИКС: скроллбар всегда виден */
+      overflow-y: scroll;
     }
     
     body {
@@ -108,7 +108,7 @@
       overflow: hidden;
     }
 
-    /* ИСПРАВЛЕНО: простое центрирование без трансформаций */
+    /* ИСПРАВЛЕНО: flex для точного центрирования */
     .hero-content {
       max-width: 950px;
       width: 100%;
@@ -116,6 +116,9 @@
       text-align: center;
       padding: 0 var(--spacing-sm);
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .slogan {
@@ -129,6 +132,7 @@
       display: inline-block;
     }
 
+    /* ИСПРАВЛЕНО: inline-block для центрирования */
     h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(2.8rem, 8vw, 6rem);
@@ -139,8 +143,11 @@
       margin-bottom: var(--spacing-sm);
       white-space: nowrap;
       animation: fadeInUp 1s var(--easing-power);
-      text-align: center;
-      width: 100%;
+      display: inline-block;
+      width: auto;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-desc {
