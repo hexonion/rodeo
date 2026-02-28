@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RODEO UNION GROUP — корпоративный холдинг</title>
+  <meta name="description" content="RODEO UNION GROUP — многопрофильный холдинг в Сан-Андреасе. Управление сетью заведений, научные разработки, благотворительность." />
 
   <!-- Критические ресурсы -->
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -13,7 +14,7 @@
   </noscript>
 
   <style>
-    /* ===== БАЗА ===== */
+    /* ===== БАЗА И ПЕРЕМЕННЫЕ ===== */
     :root {
       --bg-deep: #0A0A0A;
       --bg-panel: #151515;
@@ -24,31 +25,50 @@
       --gold-dim: #9B8A5A;
       --text-white: #FFFFFF;
       --text-muted: #9E9E9E;
-      --easing-power: cubic-bezier(.4,0,.2,1);
+      --text-light: #E0E0E0;
+      --easing-power: cubic-bezier(0.4, 0.0, 0.2, 1);
       --radius: 14px;
       --shadow: 0 8px 28px rgba(0,0,0,.25);
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; background: #0A0A0A; }
+    html { scroll-behavior: smooth; background: var(--bg-deep); }
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--text-white);
-      background: #0A0A0A;
+      background: var(--bg-deep);
       min-height: 100vh;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ===== КОМПОНЕНТЫ ===== */
+    .container { 
+      width: 100%; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 var(--spacing-sm); 
+    }
+
     /* ===== ХЕДЕР ===== */
     .header {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      padding: 1.75rem 2rem;
+      padding: 1.75rem var(--spacing-md);
       backdrop-filter: blur(12px) saturate(120%);
       background: rgba(5,5,5,.75);
       border-bottom: 1px solid rgba(201,169,89,.15);
+      transition: padding 0.3s;
     }
+    @media (max-width: 768px) {
+      .header { padding: var(--spacing-sm); }
+    }
+
     .logo {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 300;
@@ -56,7 +76,8 @@
       letter-spacing: .25em;
       color: var(--text-white);
       text-align: center;
-      white-space: nowrap; /* держим одну строку */
+      white-space: nowrap;
+      font-size: clamp(1rem, 3vw, 1.4rem);
     }
     .logo span { color: var(--gold); }
 
@@ -65,7 +86,7 @@
       min-height: 100vh;
       display: grid;
       align-items: end;
-      padding: 6rem 0 6rem;
+      padding: var(--spacing-xl) 0 var(--spacing-lg);
       position: relative;
       background: radial-gradient(ellipse at 70% 40%, #1E1A12 0%, #070707 90%);
       overflow: hidden;
@@ -76,7 +97,7 @@
       width: 100%;
       margin: 0 auto;
       text-align: center;
-      padding: 0 1rem;
+      padding: 0 var(--spacing-sm);
       z-index: 2;
     }
 
@@ -98,18 +119,20 @@
       line-height: 0.92;
       text-transform: uppercase;
       color: var(--text-white);
-      margin-bottom: 1rem;
-      white-space: nowrap; /* одно слово в строке */
+      margin-bottom: var(--spacing-sm);
+      white-space: nowrap;
+      animation: fadeInUp 1s var(--easing-power);
     }
 
     .hero-desc {
-      color: #DADADA;
+      color: var(--text-light);
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       max-width: 720px;
       margin: 0 auto 1.8rem;
       text-align: center;
       font-weight: 300;
       line-height: 1.75;
+      animation: fadeInUp 1s var(--easing-power) 0.1s both;
     }
 
     .gold-button {
@@ -120,7 +143,7 @@
       background: transparent;
       border: 1px solid var(--gold);
       color: var(--gold);
-      padding: 1rem 2.4rem;
+      padding: var(--spacing-sm) 2.4rem;
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.3em;
@@ -128,145 +151,458 @@
       transition: all 0.5s var(--easing-power);
       cursor: pointer;
       border-radius: 999px;
+      text-decoration: none;
+      animation: fadeInUp 1s var(--easing-power) 0.2s both;
     }
     .gold-button:hover {
       background: var(--gold);
-      color: #0A0A0A;
+      color: var(--bg-deep);
       box-shadow: 0 0 28px rgba(201,169,89,.5);
+      transform: translateY(-2px);
+    }
+    .gold-button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
     }
 
     /* ===== О ХОЛДИНГЕ ===== */
-    .section-about { padding: 6rem 0; background: #0A0A0A; }
+    .section-about { 
+      padding: var(--spacing-xl) 0; 
+      background: var(--bg-deep); 
+    }
 
     .about-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 4rem;
+      gap: var(--spacing-lg);
       align-items: center;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 var(--spacing-sm);
+    }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: var(--spacing-md); }
     }
 
     .about-left p {
       font-size: 1.25rem;
-      color: #DDD;
+      color: var(--text-light);
       font-weight: 300;
       line-height: 1.8;
       margin-bottom: 1.8rem;
     }
     .accent-gold { color: var(--gold); font-weight: 500; }
 
-    .stats { display: flex; gap: 2.5rem; margin-top: 1rem; }
+    .stats { display: flex; gap: 2.5rem; margin-top: var(--spacing-sm); }
 
-    .stat-item { border-top: 1px solid var(--gold-dim); padding-top: .8rem; min-width: 120px; }
-    .stat-number { font-size: 2.4rem; font-weight: 200; color: var(--gold); line-height: 1; }
-    .stat-label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); }
+    .stat-item { 
+      border-top: 1px solid var(--gold-dim); 
+      padding-top: .8rem; 
+      min-width: 120px; 
+    }
+    .stat-number { 
+      font-size: 2.4rem; 
+      font-weight: 200; 
+      color: var(--gold); 
+      line-height: 1; 
+    }
+    .stat-label { 
+      font-size: .7rem; 
+      letter-spacing: .2em; 
+      text-transform: uppercase; 
+      color: var(--text-muted); 
+    }
 
-    .about-right .about-quote { font-size: 1.75rem; color: #CCC; font-weight: 200; line-height: 1.5; }
-    .quote-author { margin-top: .8rem; color: var(--gold-dim); text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; }
+    .about-right .about-quote { 
+      font-size: 1.75rem; 
+      color: #CCC; 
+      font-weight: 200; 
+      line-height: 1.5; 
+    }
+    .quote-author { 
+      margin-top: .8rem; 
+      color: var(--gold-dim); 
+      text-transform: uppercase; 
+      letter-spacing: .15em; 
+      font-size: .8rem; 
+    }
 
-    /* ===== НАПРАВЛЕНИЯ (улучшено) ===== */
-    .divisions { padding: 5rem 0; background: #0F0F0F; }
-    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    /* ===== НАПРАВЛЕНИЯ ===== */
+    .divisions { 
+      padding: var(--spacing-xl) 0; 
+      background: #0F0F0F; 
+    }
 
     .directions-head {
-      display: flex; align-items: end; justify-content: space-between; gap: 1rem;
+      display: flex; 
+      align-items: end; 
+      justify-content: space-between; 
+      gap: var(--spacing-sm);
       margin-bottom: 1.75rem;
     }
     .directions-head h2 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2rem; font-weight: 300; color: var(--gold);
+      font-size: 2rem; 
+      font-weight: 300; 
+      color: var(--gold);
       white-space: nowrap;
+    }
+    @media (max-width: 768px) {
+      .directions-head { flex-direction: column; align-items: start; }
     }
 
     .division-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      gap: var(--spacing-sm);
+    }
+    @media (max-width: 768px) {
+      .division-grid { grid-template-columns: 1fr; }
     }
 
     .division-card {
-      background: linear-gradient(#1A1A1A, #141414);
-      padding: 2rem;
+      background: linear-gradient(var(--bg-card), #141414);
+      padding: var(--spacing-md);
       border-radius: var(--radius);
       border: 1px solid var(--border-subtle);
-      transition: transform .5s var(--easing-power), background .3s;
+      transition: all 0.5s var(--easing-power);
       min-height: 180px;
-      display: flex; flex-direction: column; justify-content: space-between;
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between;
       overflow: hidden;
       position: relative;
+      opacity: 0;
+      transform: translateY(30px);
     }
-    .division-card:hover { transform: translateY(-6px); background: linear-gradient(#232323, #1A1A1A); }
+    .division-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .division-card:hover { 
+      transform: translateY(-6px); 
+      background: linear-gradient(#232323, var(--bg-card)); 
+      border-color: var(--gold-dim);
+    }
 
-    .division-sub { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: .4rem; }
-    .division-card h3 { font-size: 1.6rem; font-weight: 300; color: var(--gold); margin-bottom: .6rem; }
-    .gold-divider { width: 40px; height: 1px; background: var(--gold); margin: 0.6rem 0 0.8rem; }
-    .division-card p { color: #ccc; font-size: .95rem; line-height: 1.6; }
+    .division-sub { 
+      font-size: .72rem; 
+      letter-spacing: .25em; 
+      text-transform: uppercase; 
+      color: var(--gold-dim); 
+      margin-bottom: .4rem; 
+    }
+    .division-card h3 { 
+      font-size: 1.6rem; 
+      font-weight: 300; 
+      color: var(--gold); 
+      margin-bottom: .6rem; 
+    }
+    .gold-divider { 
+      width: 40px; 
+      height: 1px; 
+      background: var(--gold); 
+      margin: 0.6rem 0 0.8rem; 
+      transition: width 0.3s;
+    }
+    .division-card:hover .gold-divider { width: 70px; }
+    .division-card p { 
+      color: var(--text-light); 
+      font-size: .95rem; 
+      line-height: 1.6; 
+    }
 
-    /* ===== КОНТАКТЫ ===== */
-    .contacts-section { padding: 5rem 0 4rem; background: linear-gradient(145deg, #0C0C0C 0%, #131313 100%); }
+    /* ===== КОНТАКТЫ (обновленные) ===== */
+    .contacts-section { 
+      padding: var(--spacing-xl) 0 var(--spacing-lg); 
+      background: linear-gradient(145deg, #0C0C0C 0%, #131313 100%); 
+    }
 
-    .contact-head { display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem; }
-    .head-quote { color: var(--gold-dim); font-size: .9rem; letter-spacing: .2em; text-transform: uppercase; }
+    .contact-head {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: flex-end; 
+      margin-bottom: 1.8rem; 
+      flex-wrap: wrap; 
+      gap: var(--spacing-sm);
+    }
+    .contact-head h2 { 
+      font-size: 2.5rem; 
+      font-weight: 300; 
+      color: var(--text-white); 
+    }
+    .head-quote { 
+      color: var(--gold-dim); 
+      font-size: .9rem; 
+      letter-spacing: .2em; 
+      text-transform: uppercase; 
+    }
 
-    .contact-cards { display: grid; grid-template-columns: 2fr 1.5fr; gap: 1.8rem; }
+    .contact-cards { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 1.8rem; 
+      margin-bottom: var(--spacing-lg);
+    }
+    @media (max-width: 768px) {
+      .contact-cards { grid-template-columns: 1fr; }
+    }
 
-    .info-group { background: rgba(20,20,20,.7); border: 1px solid var(--border-subtle); padding: 1.8rem; border-radius: 12px; display: flex; flex-direction: column; gap: .9rem; }
-    .info-row { display: flex; border-bottom: 1px dashed #2A2A2A; padding: .8rem 0; align-items: center; }
+    .info-group { 
+      background: rgba(20,20,20,.7); 
+      border: 1px solid var(--border-subtle); 
+      padding: 1.8rem; 
+      border-radius: 12px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: .9rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s var(--easing-power), border-color 0.3s;
+    }
+    .info-group.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .info-group:hover {
+      border-color: var(--gold-dim);
+    }
+
+    .info-row { 
+      display: flex; 
+      border-bottom: 1px dashed var(--border-subtle); 
+      padding: .8rem 0; 
+      align-items: center; 
+    }
     .info-row:last-child { border-bottom: none; }
-    .info-label { width: 110px; font-size: .7rem; text-transform: uppercase; color: var(--gold); letter-spacing: .1em; opacity: .9; display: inline-block; }
-    .info-value { flex: 1; color: #ddd; font-weight: 300; display: inline-flex; align-items: center; gap: .4rem; }
 
-    .info-value a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s, color .2s; }
-    .info-value a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .info-label { 
+      width: 110px; 
+      font-size: .7rem; 
+      text-transform: uppercase; 
+      color: var(--gold); 
+      letter-spacing: .1em; 
+      opacity: .9; 
+      display: inline-block; 
+    }
+    .info-value { 
+      flex: 1; 
+      color: var(--text-light); 
+      font-weight: 300; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: .4rem; 
+    }
 
-    /* кнопки для переходов (замена ссылок) */
-    .nav-button {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: .5rem;
-      padding: .8rem 1.2rem;
-      border-radius: 999px;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      background: transparent;
-      cursor: pointer;
+    .info-value a { 
+      color: inherit; 
+      text-decoration: none; 
+      border-bottom: 1px solid transparent; 
+      transition: border-color .2s, color .2s; 
+    }
+    .info-value a:hover { 
+      color: var(--gold); 
+      border-bottom-color: var(--gold); 
+    }
+
+    /* ===== СТИЛИЗОВАННЫЕ КНОПКИ TAGGER (без видимости ссылок) ===== */
+    .tagger-section {
+      margin-top: var(--spacing-lg);
+    }
+
+    .tagger-title {
+      color: var(--gold-dim);
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .tagger-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .tagger-grid { grid-template-columns: 1fr; }
+    }
+
+    .tagger-button {
+      display: block;
+      width: 100%;
+      padding: 1.8rem 1.5rem;
+      background: linear-gradient(145deg, #1A1A1A, #141414);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
       text-decoration: none;
-      font-weight: 600;
-      transition: transform .2s ease, background .3s ease, color .3s ease;
+      transition: all 0.4s var(--easing-power);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
     }
-    .nav-button:hover { transform: translateY(-2px); background: var(--gold); color: #0A0A0A; }
 
-    .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); padding: 0; border-radius: 10px; overflow: hidden; }
-    .social-card {
-      background: #1A1A1A; padding: 1.4rem; display: flex; flex-direction: column; gap: .4rem; align-items: flex-start;
-      transition: background .3s;
+    .tagger-button.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .social-card:hover { background: #232323; }
-    .social-handle { font-size: .6rem; text-transform: uppercase; color: var(--gold-dim); letter-spacing: .2em; }
-    .social-link { font-size: 1rem; color: var(--text-white); display: inline-flex; align-items: center; gap: .4rem; }
-    .social-icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; fill: currentColor; color: var(--gold); }
 
-    /* SVG inline icons helper (иконки внутри кнопок) */
-    .icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; fill: currentColor; }
+    .tagger-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(201, 169, 89, 0.03), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .tagger-button:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,89,0.2);
+    }
+
+    .tagger-button:hover::before {
+      transform: translateX(100%);
+    }
+
+    .tagger-button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    .tagger-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+      margin-bottom: 0.5rem;
+      display: block;
+      transition: color 0.3s;
+    }
+
+    .tagger-button:hover .tagger-label {
+      color: var(--gold-light);
+    }
+
+    .tagger-name {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--text-white);
+      margin-bottom: 0.3rem;
+      transition: color 0.3s, transform 0.3s;
+      display: block;
+    }
+
+    .tagger-button:hover .tagger-name {
+      color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .tagger-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: color 0.3s;
+    }
+
+    .tagger-button:hover .tagger-hint {
+      color: var(--gold-dim);
+    }
+
+    .tagger-hint::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+
+    .tagger-button:hover .tagger-hint::after {
+      transform: translateX(4px);
+    }
 
     /* ===== ФУТЕР ===== */
-    .footer { background:#0A0A0A; border-top:1px solid #1E1E1E; padding: 2rem 2rem; display:flex; justify-content: space-between; align-items: center; font-size:.75rem; color:#5F5F5F; text-transform: uppercase; letter-spacing:.15em; }
-
-    /* ===== АНИМАЦИИ ===== */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .division-card, .info-group, .social-card { transition: none; animation: none; }
-      .section-about, .divisions, .contacts-section { will-change: auto; opacity: 1; transform: none; }
+    .footer { 
+      background: var(--bg-deep); 
+      border-top: 1px solid #1E1E1E; 
+      padding: var(--spacing-md) var(--spacing-md); 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      font-size: .75rem; 
+      color: #5F5F5F; 
+      text-transform: uppercase; 
+      letter-spacing: .15em; 
     }
 
-    .hidden { opacity: 0; transform: translateY(20px); }
-    .visible { opacity: 1; transform: translateY(0); transition: all .6s var(--easing-power); }
+    /* ===== PROGRESS BAR ===== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+      z-index: 101;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(201, 169, 89, 0.5);
+    }
 
-    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+    /* ===== АНИМАЦИИ ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Параллакс для hero */
+    .hero {
+      transition: background-position 0.1s ease;
+    }
+
+    /* Базовые стили для анимируемых элементов */
+    .division-card, .info-group, .tagger-button {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--easing-power), transform 0.6s var(--easing-power), border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .division-card.visible, .info-group.visible, .tagger-button.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Фокус состояния */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
   <header class="header" aria-label="Главная навигация">
     <div class="logo" style="user-select: none;">
       <span aria-hidden="true">✦</span> RODEO UNION GROUP <span aria-hidden="true">✦</span>
@@ -275,24 +611,23 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero" aria-label="Героическая секция">
+    <section class="hero" id="hero" aria-label="Героическая секция">
       <div class="container hero-content">
-        <!-- Название в одну строку без переноса -->
         <h1>RODEO UNION GROUP</h1>
-        <div class="slogan" aria-label="Слоган-верхушка">Community. Balance. Choice.</div>
+        <div class="slogan" aria-label="Слоган">Community. Balance. Choice.</div>
 
         <p class="hero-desc">
           МНОГОПРОФИЛЬНЫЙ ХОЛДИНГ, УПРАВЛЯЮЩИЙ СЕТЬЮ УНИКАЛЬНЫХ ЗАВЕДЕНИЙ ПО ВСЕМУ ШТАТУ САН-АНДРЕАС.
           РАЗВЛЕЧЕНИЯ, НАУЧНЫЕ РАЗРАБОТКИ, БЛАГОТВОРИТЕЛЬНОСТЬ — ВСЕ ДЛЯ УСТОЙЧИВОГО РОСТА И ВЛИЯНИЯ.
         </p>
 
-        <button class="gold-button" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'});">
+        <a href="#about" class="gold-button">
           ПОДРОБНЕЕ
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </button>
+        </a>
       </div>
     </section>
 
@@ -302,11 +637,11 @@
         <div class="about-left">
           <p><span class="accent-gold">Родео Юнион Груп</span> — системный интегратор бизнеса, культуры и высоких технологий. Мы формируем среду, в которой развлечения становятся искусством, а наука — инструментом влияния.</p>
           <div class="stats" aria-label="Статистика">
-            <div class="stat-item" style="border-top:0; padding-top:0;">
+            <div class="stat-item">
               <div class="stat-number">22</div>
               <div class="stat-label">актива</div>
             </div>
-            <div class="stat-item" style="border-top:0; padding-top:0;">
+            <div class="stat-item">
               <div class="stat-number">3</div>
               <div class="stat-label">направления</div>
             </div>
@@ -319,7 +654,7 @@
       </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК Направления (3 карточки) -->
+    <!-- НАПРАВЛЕНИЯ -->
     <section class="divisions" aria-label="Направления">
       <div class="container">
         <div class="directions-head">
@@ -328,31 +663,37 @@
         </div>
 
         <div class="division-grid" role="region" aria-label="Карточки направлений">
-          <article class="division-card hidden" style="min-height: 180px;">
-            <div class="division-sub">благотворительное крыло</div>
-            <h3>RODEO OUTREACH</h3>
-            <div class="gold-divider"></div>
+          <article class="division-card">
+            <div>
+              <div class="division-sub">благотворительное крыло</div>
+              <h3>RODEO OUTREACH</h3>
+              <div class="gold-divider"></div>
+            </div>
             <p>Фонд, реализующий социальные инициативы: медицина, образование и адресная помощь — улучшая качество жизни в сообществах.</p>
           </article>
 
-          <article class="division-card hidden" style="min-height: 180px;">
-            <div class="division-sub">технологический центр</div>
-            <h3>RODEO RESEARCH</h3>
-            <div class="gold-divider"></div>
+          <article class="division-card">
+            <div>
+              <div class="division-sub">технологический центр</div>
+              <h3>RODEO RESEARCH</h3>
+              <div class="gold-divider"></div>
+            </div>
             <p>Научные разработки в фармацевтике и передовых технологиях. Лаборатории, патенты, инновации в действии.</p>
           </article>
 
-          <article class="division-card hidden" style="min-height: 180px;">
-            <div class="division-sub">коммерция & индустрия</div>
-            <h3>RODEO APPROACH</h3>
-            <div class="gold-divider"></div>
+          <article class="division-card">
+            <div>
+              <div class="division-sub">коммерция & индустрия</div>
+              <h3>RODEO APPROACH</h3>
+              <div class="gold-divider"></div>
+            </div>
             <p>Сеть клубов, баров, спортивных залов, бильярдных и казино — драйв и роскошь без компромиссов.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- КОНТАКТЫ -->
+    <!-- КОНТАКТЫ (только связь) -->
     <section class="contacts-section" aria-label="Контакты">
       <div class="container">
         <div class="contact-head">
@@ -374,36 +715,45 @@
               <span class="info-label" aria-label="Электронная почта">почта</span>
               <span class="info-value"><a href="mailto:rodeouniongroup@gmail.com">rodeouniongroup@gmail.com</a></span>
             </div>
-            <!-- ЭКОСИСТЕМУ удаляем -->
           </div>
 
-          <div class="info-group" style="justify-content:center; display:flex; flex-direction:column;">
-            <div style="color: var(--gold); font-size: 2rem; font-weight: 200; line-height: 1;">22+</div>
-            <div style="color:#777; text-transform: uppercase; letter-spacing: .2em; font-size: .7rem;">ключевых объектов</div>
-            <div style="margin-top: .9rem; color:#aaa; font-size:.9rem;">Прямое управление, полный контроль.</div>
+          <div class="info-group">
+            <div class="info-row">
+              <span class="info-label" aria-label="Режим работы">режим</span>
+              <span class="info-value">24/7 • экстренная связь</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label" aria-label="Штаб-квартира">центральный офис</span>
+              <span class="info-value">круглосуточно</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label" aria-label="Конфиденциально">secure line</span>
+              <span class="info-value">по запросу</span>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top:4rem;">
-          <h3 style="color: var(--gold-dim); font-weight: 200; letter-spacing: .2em; text-transform: none;">
-            TAGGER • официальные ресурсы
-          </h3>
-          <div class="social-grid" aria-label="Социальные кнопки-ссылки">
-            <!-- Кнопки-ссылки вместо обычных ссылок, кликом переходим по нужному URL -->
-            <button class="social-card" onclick="location.href='https://tagger.su/unmeinohiniku';" aria-label="генеральный директор">
-              <span class="social-handle" style="width:100%;">генеральный директор</span>
-              <span class="social-link">tagger.su/unmeinohiniku</span>
-            </button>
+        <!-- СТИЛИЗОВАННЫЙ БЛОК TAGGER (без видимости ссылок) -->
+        <div class="tagger-section">
+          <div class="tagger-title">TAGGER • официальные ресурсы</div>
+          <div class="tagger-grid">
+            <a href="https://tagger.su/unmeinohiniku" class="tagger-button" target="_blank" rel="noopener noreferrer">
+              <span class="tagger-label">генеральный директор</span>
+              <span class="tagger-name">unmeinohiniku</span>
+              <span class="tagger-hint">перейти в профиль</span>
+            </a>
 
-            <button class="social-card" onclick="location.href='https://tagger.su/pages/rodeouniongroup';" aria-label="сообщество холдинга">
-              <span class="social-handle" style="width:100%;">сообщество холдинга</span>
-              <span class="social-link">tagger.su/pages/rodeouniongroup</span>
-            </button>
+            <a href="https://tagger.su/pages/rodeouniongroup" class="tagger-button" target="_blank" rel="noopener noreferrer">
+              <span class="tagger-label">сообщество холдинга</span>
+              <span class="tagger-name">rodeouniongroup</span>
+              <span class="tagger-hint">перейти в сообщество</span>
+            </a>
 
-            <button class="social-card" onclick="location.href='https://tagger.su/pages/RFLAB_RECORDS';" aria-label="лейбл RFLAB RECORDS">
-              <span class="social-handle" style="width:100%;">лейбл RFLAB RECORDS</span>
-              <span class="social-link">tagger.su/pages/RFLAB_RECORDS</span>
-            </button>
+            <a href="https://tagger.su/pages/RFLAB_RECORDS" class="tagger-button" target="_blank" rel="noopener noreferrer">
+              <span class="tagger-label">лейбл</span>
+              <span class="tagger-name">RFLAB RECORDS</span>
+              <span class="tagger-hint">перейти на лейбл</span>
+            </a>
           </div>
         </div>
       </div>
@@ -415,24 +765,49 @@
     <div class="copy"><strong>RODEO UNION GROUP</strong> © all rights reserved</div>
   </footer>
 
-  <!-- JS: плавная анимация появления секций -->
   <script>
     (function() {
-      // Плавное появление элементов на экране
-      const toReveal = document.querySelectorAll('.division-card, .info-group, .social-card');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            e.target.classList.remove('hidden');
+      // ===== PROGRESS BAR =====
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + '%';
+      });
+
+      // ===== INTERSECTION OBSERVER (анимация появления) =====
+      const animatedElements = document.querySelectorAll('.division-card, .info-group, .tagger-button');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // После появления можно перестать наблюдать
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15 });
-
-      toReveal.forEach(el => {
-        el.classList.add('hidden');
-        io.observe(el);
+      }, { 
+        threshold: 0.15,
+        rootMargin: '0px 0px -20px 0px' // небольшая задержка для плавности
       });
+
+      animatedElements.forEach(el => {
+        observer.observe(el);
+      });
+
+      // ===== ПАРАЛЛАКС ДЛЯ HERO =====
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          hero.style.backgroundPositionY = scrolled * 0.3 + 'px';
+        });
+      }
+
+      // ===== КОНСОЛЬ ПРИВЕТСТВИЕ =====
+      console.log('%cRODEO UNION GROUP // корпоративный портал', 'color: #C9A959; font-size: 13px; font-weight: 400;');
+      console.log('%c22 актива • 3 направления • полный спектр влияния', 'color: #6A6A6A;');
     })();
   </script>
 </body>
