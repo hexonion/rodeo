@@ -42,20 +42,9 @@
       padding: 0; 
     }
 
-    /* ПОЛНОСТЬЮ УБИРАЕМ СКРОЛЛБАР */
     html { 
       scroll-behavior: smooth; 
       background: var(--bg-deep);
-      -ms-overflow-style: none;  /* IE и Edge */
-      scrollbar-width: none;     /* Firefox */
-      overflow-y: scroll;        /* Сохраняем прокрутку */
-    }
-    
-    /* Для Chrome, Safari и Opera */
-    html::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      background: transparent;
     }
     
     body {
@@ -126,9 +115,6 @@
       text-align: center;
       padding: 0 var(--spacing-sm);
       z-index: 2;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
     .slogan {
@@ -152,8 +138,8 @@
       margin-bottom: var(--spacing-sm);
       white-space: nowrap;
       animation: fadeInUp 1s var(--easing-power);
-      width: 100%;
       text-align: center;
+      width: 100%;
     }
 
     .hero-desc {
@@ -572,19 +558,6 @@
       letter-spacing: .15em; 
     }
 
-    /* ===== PROGRESS BAR ===== */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
-      z-index: 101;
-      transition: width 0.1s ease;
-      box-shadow: 0 0 10px rgba(201, 169, 89, 0.5);
-    }
-
     /* ===== АНИМАЦИИ ===== */
     @keyframes fadeInUp {
       from {
@@ -629,22 +602,9 @@
         scroll-behavior: auto !important;
       }
     }
-
-    /* Дополнительная защита от смещения */
-    .hero-content,
-    h1,
-    .slogan,
-    .hero-desc {
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
   </style>
 </head>
 <body>
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
-
   <header class="header" aria-label="Главная навигация">
     <div class="logo" style="user-select: none;">
       <span aria-hidden="true">✦</span> RODEO UNION GROUP <span aria-hidden="true">✦</span>
@@ -781,7 +741,7 @@
           <div class="tagger-grid">
             <a href="https://tagger.su/unmeinohiniku" class="tagger-button" target="_blank" rel="noopener noreferrer">
               <span class="tagger-label">генеральный директор</span>
-              <span class="tagger-name">ЮКАРИ ОЕДЗАВА</span>
+              <span class="tagger-name">YUKARI OEODZAVA</span>
               <span class="tagger-hint">перейти в профиль</span>
             </a>
 
@@ -809,15 +769,6 @@
 
   <script>
     (function() {
-      // ===== PROGRESS BAR =====
-      const progressBar = document.getElementById('progressBar');
-      window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + '%';
-      });
-
       // ===== INTERSECTION OBSERVER (анимация появления) =====
       const animatedElements = document.querySelectorAll('.division-card, .info-group, .tagger-button');
       
@@ -825,13 +776,12 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // После появления можно перестать наблюдать
             observer.unobserve(entry.target);
           }
         });
       }, { 
         threshold: 0.15,
-        rootMargin: '0px 0px -20px 0px' // небольшая задержка для плавности
+        rootMargin: '0px 0px -20px 0px'
       });
 
       animatedElements.forEach(el => {
