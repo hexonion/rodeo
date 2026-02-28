@@ -13,7 +13,7 @@
   </noscript>
 
   <style>
-    /* ===== БАЗА И ПЕРЕМЕННЫЕ ===== */
+    /* ===== БАЗА ===== */
     :root {
       --bg-deep: #0A0A0A;
       --bg-panel: #151515;
@@ -80,7 +80,6 @@
       z-index: 2;
     }
 
-    /* слоган по центру под заголовком */
     .slogan {
       font-size: 1.05rem;
       letter-spacing: 0.6em;
@@ -103,7 +102,6 @@
       white-space: nowrap; /* одно слово в строке */
     }
 
-    /* описание под заголовком, центрировано */
     .hero-desc {
       color: #DADADA;
       font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -168,7 +166,7 @@
     .about-right .about-quote { font-size: 1.75rem; color: #CCC; font-weight: 200; line-height: 1.5; }
     .quote-author { margin-top: .8rem; color: var(--gold-dim); text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; }
 
-    /* ===== НАПРАВЛЕНИЯ (3 карточки) ===== */
+    /* ===== НАПРАВЛЕНИЯ (улучшено) ===== */
     .divisions { padding: 5rem 0; background: #0F0F0F; }
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
@@ -179,6 +177,7 @@
     .directions-head h2 {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 2rem; font-weight: 300; color: var(--gold);
+      white-space: nowrap;
     }
 
     .division-grid {
@@ -196,59 +195,78 @@
       min-height: 180px;
       display: flex; flex-direction: column; justify-content: space-between;
       overflow: hidden;
+      position: relative;
     }
-    .division-card:hover {
-      transform: translateY(-6px);
-      background: linear-gradient(#232323, #1A1A1A);
-    }
+    .division-card:hover { transform: translateY(-6px); background: linear-gradient(#232323, #1A1A1A); }
+
     .division-sub { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: .4rem; }
     .division-card h3 { font-size: 1.6rem; font-weight: 300; color: var(--gold); margin-bottom: .6rem; }
     .gold-divider { width: 40px; height: 1px; background: var(--gold); margin: 0.6rem 0 0.8rem; }
-
     .division-card p { color: #ccc; font-size: .95rem; line-height: 1.6; }
 
     /* ===== КОНТАКТЫ ===== */
     .contacts-section { padding: 5rem 0 4rem; background: linear-gradient(145deg, #0C0C0C 0%, #131313 100%); }
 
-    .contact-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem; }
+    .contact-head { display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem; }
     .head-quote { color: var(--gold-dim); font-size: .9rem; letter-spacing: .2em; text-transform: uppercase; }
 
     .contact-cards { display: grid; grid-template-columns: 2fr 1.5fr; gap: 1.8rem; }
 
-    .info-group { background: rgba(20,20,20,.7); border: 1px solid var(--border-subtle); padding: 1.8rem; border-radius: 12px; }
-    .info-row { display: flex; border-bottom: 1px dashed #2A2A2A; padding: .9rem 0; align-items: center; }
+    .info-group { background: rgba(20,20,20,.7); border: 1px solid var(--border-subtle); padding: 1.8rem; border-radius: 12px; display: flex; flex-direction: column; gap: .9rem; }
+    .info-row { display: flex; border-bottom: 1px dashed #2A2A2A; padding: .8rem 0; align-items: center; }
     .info-row:last-child { border-bottom: none; }
     .info-label { width: 110px; font-size: .7rem; text-transform: uppercase; color: var(--gold); letter-spacing: .1em; opacity: .9; display: inline-block; }
-    .info-value { flex: 1; color: #ddd; font-weight: 300; }
+    .info-value { flex: 1; color: #ddd; font-weight: 300; display: inline-flex; align-items: center; gap: .4rem; }
+
     .info-value a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s, color .2s; }
     .info-value a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
+    /* кнопки для переходов (замена ссылок) */
+    .nav-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: .5rem;
+      padding: .8rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .2s ease, background .3s ease, color .3s ease;
+    }
+    .nav-button:hover { transform: translateY(-2px); background: var(--gold); color: #0A0A0A; }
+
     .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-subtle); padding: 0; border-radius: 10px; overflow: hidden; }
-    .social-card { background: #1A1A1A; padding: 1.4rem; display: flex; flex-direction: column; gap: .4rem; align-items: flex-start; }
+    .social-card {
+      background: #1A1A1A; padding: 1.4rem; display: flex; flex-direction: column; gap: .4rem; align-items: flex-start;
+      transition: background .3s;
+    }
     .social-card:hover { background: #232323; }
     .social-handle { font-size: .6rem; text-transform: uppercase; color: var(--gold-dim); letter-spacing: .2em; }
     .social-link { font-size: 1rem; color: var(--text-white); display: inline-flex; align-items: center; gap: .4rem; }
     .social-icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; fill: currentColor; color: var(--gold); }
 
+    /* SVG inline icons helper (иконки внутри кнопок) */
+    .icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; fill: currentColor; }
+
     /* ===== ФУТЕР ===== */
     .footer { background:#0A0A0A; border-top:1px solid #1E1E1E; padding: 2rem 2rem; display:flex; justify-content: space-between; align-items: center; font-size:.75rem; color:#5F5F5F; text-transform: uppercase; letter-spacing:.15em; }
 
-    /* ===== АНИМАЦИИ и доступность ===== */
+    /* ===== АНИМАЦИИ ===== */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .gold-button, .division-card, .info-group, .social-card { transition: none; animation: none; }
+      .division-card, .info-group, .social-card { transition: none; animation: none; }
       .section-about, .divisions, .contacts-section { will-change: auto; opacity: 1; transform: none; }
     }
 
     .hidden { opacity: 0; transform: translateY(20px); }
     .visible { opacity: 1; transform: translateY(0); transition: all .6s var(--easing-power); }
 
-    /* Tiny helper for keyboard focus visibility */
     :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
   </style>
 </head>
 <body>
-  <!-- ХЕДЕР (без навигации, только логотип) -->
   <header class="header" aria-label="Главная навигация">
     <div class="logo" style="user-select: none;">
       <span aria-hidden="true">✦</span> RODEO UNION GROUP <span aria-hidden="true">✦</span>
@@ -259,18 +277,17 @@
     <!-- HERO -->
     <section class="hero" aria-label="Героическая секция">
       <div class="container hero-content">
+        <div class="slogan" aria-label="Слоган-верхушка">Community. Balance. Choice.</div>
         <!-- Название в одну строку без переноса -->
         <h1>RODEO UNION GROUP</h1>
-        <div class="slogan" aria-label="Слоган-верхушка">Community. Balance. Choice.</div>
 
         <p class="hero-desc">
           Многопрофильный холдинг, управляющий сетью уникальных заведений по всему штату Сан-Андреас.
-          Развлечения, научные разработки, благотворительность — все для устойчивого роста и влияния.
+          Развлечения, научные разработки, благотворительность — всё для устойчивого роста и влияния.
         </p>
 
         <button class="gold-button" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'});">
           ПОДРОБНЕЕ
-          <!-- SVG-иконка стрелки -->
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -357,10 +374,7 @@
               <span class="info-label" aria-label="Электронная почта">почта</span>
               <span class="info-value"><a href="mailto:rodeouniongroup@gmail.com">rodeouniongroup@gmail.com</a></span>
             </div>
-            <div class="info-row">
-              <span class="info-label" aria-label="Экосистема">экосистема</span>
-              <span class="info-value"><a href="#" aria-label="tagger rodeouniongroup">tagger.su/rodeouniongroup</a></span>
-            </div>
+            <!-- ЭКОСИСТЕМУ удаляем -->
           </div>
 
           <div class="info-group" style="justify-content:center; display:flex; flex-direction:column;">
@@ -374,33 +388,34 @@
           <h3 style="color: var(--gold-dim); font-weight: 200; letter-spacing: .2em; text-transform: none;">
             TAGGER • официальные ресурсы
           </h3>
-          <div class="social-grid" aria-label="Социальные ссылки">
-            <a class="social-card" href="https://tagger.su/unmeinohiniku" target="_blank" aria-label="генеральный директор">
+          <div class="social-grid" aria-label="Социальные кнопки-ссылки">
+            <!-- Кнопки-ссылки вместо обычных ссылок, кликом переходим по нужному URL -->
+            <button class="social-card" onclick="location.href='https://tagger.su/unmeinohiniku';" aria-label="генеральный директор">
               <span class="social-handle" style="width:100%;">генеральный директор</span>
-              <span class="social-link" style="font-weight:500;">
-                tagger.su/unmeinohiniku
-              </span>
-            </a>
-            <a class="social-card" href="https://tagger.su/pages/rodeouniongroup" target="_blank" aria-label="сообщество холдинга">
+              <span class="social-link">tagger.su/unmeinohiniku</span>
+            </button>
+
+            <button class="social-card" onclick="location.href='https://tagger.su/pages/rodeouniongroup';" aria-label="сообщество холдинга">
               <span class="social-handle" style="width:100%;">сообщество холдинга</span>
               <span class="social-link">tagger.su/pages/rodeouniongroup</span>
-            </a>
-            <a class="social-card" href="https://tagger.su/pages/RFLAB_RECORDS" target="_blank" aria-label="лейбл RFLAB RECORDS">
+            </button>
+
+            <button class="social-card" onclick="location.href='https://tagger.su/pages/RFLAB_RECORDS';" aria-label="лейбл RFLAB RECORDS">
               <span class="social-handle" style="width:100%;">лейбл RFLAB RECORDS</span>
               <span class="social-link">tagger.su/pages/RFLAB_RECORDS</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ФУТЕР (без кнопки "наверх") -->
+  <!-- ФУТЕР -->
   <footer class="footer" aria-label="Футер">
     <div class="copy"><strong>RODEO UNION GROUP</strong> © all rights reserved</div>
   </footer>
 
-  <!-- JS: плавная анимация появления секций, небольшие UI-улучшения -->
+  <!-- JS: плавная анимация появления секций -->
   <script>
     (function() {
       // Плавное появление элементов на экране
@@ -418,16 +433,6 @@
         el.classList.add('hidden');
         io.observe(el);
       });
-
-      // Небольшой контроль анимаций: избежать повторных активизаций
-      // анимация кнопки при клике (не трясём страницу)
-      const btn = document.querySelector('.gold-button');
-      if (btn) {
-        btn.addEventListener('click', () => {
-          btn.style.transform = 'translateY(-1px)';
-          setTimeout(() => btn.style.transform = '', 150);
-        });
-      }
     })();
   </script>
 </body>
